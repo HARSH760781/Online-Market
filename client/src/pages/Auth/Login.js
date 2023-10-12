@@ -12,12 +12,13 @@ const Login = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-
+  const backend_url =
+    process.env.REACT_APP_BACKEND_URL || "http://localhost:3000";
   // form function
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/v1/auth/login", {
+      const res = await axios.post(`${backend_url}/api/v1/auth/login`, {
         email,
         password,
       });

@@ -8,6 +8,8 @@ const Products = () => {
   const [products, setProducts] = useState([]);
 
   //getall products
+  const backend_url =
+    process.env.REACT_APP_BACKEND_URL || "http://localhost:3000";
   const getAllProducts = async () => {
     try {
       const { data } = await axios.get("/api/v1/product/get-product");

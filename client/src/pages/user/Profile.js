@@ -23,11 +23,15 @@ const Profile = () => {
     setAddress(address);
   }, [auth?.user]);
 
+  console.log("hello");
+  const backend_url =
+    process.env.REACT_APP_BACKEND_URL || "http://localhost:3000";
+  // console.log(backend_url);
   // form function
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.put("/api/v1/auth/profile", {
+      const { data } = await axios.put(`${backend_url}/api/v1/auth/profile`, {
         name,
         email,
         password,

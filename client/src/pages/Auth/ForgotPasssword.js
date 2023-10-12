@@ -11,16 +11,20 @@ const ForgotPasssword = () => {
   const [answer, setAnswer] = useState("");
 
   const navigate = useNavigate();
-
+  const backend_url =
+    process.env.REACT_APP_BACKEND_URL || "http://localhost:3000";
   // form function
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/v1/auth/forgot-password", {
-        email,
-        newPassword,
-        answer,
-      });
+      const res = await axios.post(
+        `${backend_url}/api/v1/auth/forgot-password`,
+        {
+          email,
+          newPassword,
+          answer,
+        }
+      );
       if (res && res.data.success) {
         toast.success(res.data && res.data.message);
 

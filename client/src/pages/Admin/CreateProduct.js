@@ -19,9 +19,13 @@ const CreateProduct = () => {
   const [photo, setPhoto] = useState("");
 
   //get all category
+  const backend_url =
+    process.env.REACT_APP_BACKEND_URL || "http://localhost:3000";
   const getAllCategory = async () => {
     try {
-      const { data } = await axios.get("/api/v1/category/get-category");
+      const { data } = await axios.get(
+        `${backend_url}/api/v1/category/get-category`
+      );
       if (data?.success) {
         setCategories(data?.category);
       }
@@ -47,7 +51,7 @@ const CreateProduct = () => {
       productData.append("photo", photo);
       productData.append("category", category);
       const { data } = axios.post(
-        "/api/v1/product/create-product",
+        `${backend_url}/api/v1/product/create-product`,
         productData
       );
       if (data?.success) {

@@ -7,10 +7,11 @@ import Spinner from "../Spinner";
 export default function PrivateRoute() {
   const [ok, setOk] = useState(false);
   const [auth, setAuth] = useAuth();
-
+  const backend_url =
+    process.env.REACT_APP_BACKEND_URL || "http://localhost:3000";
   useEffect(() => {
     const authCheck = async () => {
-      const res = await axios.get("/api/v1/auth/admin-auth");
+      const res = await axios.get(`${backend_url}/api/v1/auth/admin-auth`);
       if (res.data.ok) {
         setOk(true);
       } else {
