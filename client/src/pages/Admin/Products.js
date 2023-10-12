@@ -12,7 +12,9 @@ const Products = () => {
     process.env.REACT_APP_BACKEND_URL || "http://localhost:3000";
   const getAllProducts = async () => {
     try {
-      const { data } = await axios.get("/api/v1/product/get-product");
+      const { data } = await axios.get(
+        `${backend_url}/api/v1/product/get-product`
+      );
       setProducts(data.products);
     } catch (error) {
       console.log(error);
@@ -41,7 +43,7 @@ const Products = () => {
               >
                 <div className="card m-2" style={{ width: "18rem" }}>
                   <img
-                    src={`/api/v1/product/product-photo/${p._id}`}
+                    src={`${backend_url}/api/v1/product/product-photo/${p._id}`}
                     className="card-img-top"
                     alt={p.name}
                   />
